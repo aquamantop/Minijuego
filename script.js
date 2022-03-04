@@ -16,14 +16,25 @@ function comenzar() {
 
         if (maquina === 3 && elegir === 2){
             alert("El ganador es: la maquina :(")
+            console.log(maquina);
+            console.log(elegir);
         } else if (maquina === 2 && elegir === 1){
-            alert("El ganador es: la maquina :(") 
+            alert("El ganador es: la maquina :(");
+            console.log(maquina);
+            console.log(elegir);
         } else if (maquina === 1 && elegir === 3){
-            alert("El ganador es: la maquina :(")
+            alert("El ganador es: la maquina :(");
+            console.log(maquina);
+            console.log(elegir);
         } else if (maquina === elegir){
-            alert("El ganador es: ¡no hay! Empate -_-")
-        } else alert("El ganador es: ¡" + nombre + "! :)")
-
+            alert("El ganador es: ¡no hay! Empate -_-");
+            console.log(maquina);
+            console.log(elegir);
+        } else {
+            alert("El ganador es: ¡" + nombre + "! :)");
+            console.log(maquina);
+            console.log(elegir);
+            }
     }
 
 }
