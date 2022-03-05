@@ -9,8 +9,8 @@ function comenzar() {
     if (confirmacion){
         let nombre = prompt("Por favor, ingresar nombre de jugador");
     
-        if (nombre){
-            alert("¡Debe escribir un nombre!");    
+        if (!nombre){
+            alert("¡Debe escribir un nombre!");
         } else {
             let contadorUsuario = 0;
             let contadorPC= 0;
