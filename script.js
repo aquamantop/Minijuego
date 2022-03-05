@@ -9,7 +9,7 @@ function comenzar() {
     if (confirmacion){
         let nombre = prompt("Por favor, ingresar nombre de jugador");
     
-        if (!nombre){
+        if (!nombre || nombre.trim() === ""){
             alert("¡Debe escribir un nombre!");
         } else {
             let contadorUsuario = 0;
