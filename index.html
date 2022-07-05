@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/346fc6ed98.js" crossorigin="anonymous"></script>
     <title>JUEGUITO</title>
 </head>
 
@@ -21,18 +22,47 @@
 
     <!-- Piedra, papel o tijera -->
     <img id="imagenPpt" src="./Img/ppt.png" alt="Juego">
+
+    <!-- Ganador -->
+    <div id="ganador">
+
+    </div>
+
+    <!-- Opciones -->
+    <div id="caja" class="hide contenedor">
+        <div class="opciones" id="piedra">
+            Piedra
+            <i class="fa-solid fa-hand-back-fist"></i>
+        </div>
+
+        <div class="opciones" id="papel">
+            Papel
+            <i class="fa-solid fa-hand"></i>
+        </div>
+
+        <div class="opciones" id="tijera">
+            Tijera
+            <i class="fa-solid fa-hand-scissors"></i>
+        </div>
+    </div>
     
     <!-- Reglas -->
-    <ol type="1">
+    <ol id="reglas" type="1">
         <li>Piedra le gana a tijera, papel le gana a piedra y tijera le gana a papel</li>
-        <li>Se deberá elegir un número, el 1 (uno) corresponde a piedra. El 2 (dos) a papel. Y el 3 (tres) a tijera.</li>
-        <li>La máquina elegirá aleatoriamente otro número para completar el round y se determinará quien gana.</li>
+        <li>Se deberá elegir una opción por ronda, ya sea piedra, papel o tijera.</li>
+        <li>La máquina elegirá aleatoriamente otra opción para completar la ronda y se determinará quien gana.</li>
     </ol>
 
-    <!-- Jugar -->
-    <button onclick="comenzar()" id="boton">¡Comenzar!</button>
+    <div id="historial-ganadores">
+    </div>
 
-    <script src="./script.js"></script>
+    <div id="historial-rondas"></div>
+
+    <!-- Jugar -->
+    <button id="btn-comenzar">¡Comenzar!</button>
+
 </body>
+
+<script src="./script.js"></script>
 
 </html>
