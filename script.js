@@ -61,6 +61,7 @@ function funcionBoton(data) {
     historialGanadores.classList.remove("hide");
     juego.classList.add("hide");
     caja.classList.add("hide");
+    volverAJugar.classList.add("hide");
     contadorJugador = 0;
     contadorPC = 0;
     contadorRondas = 0;
