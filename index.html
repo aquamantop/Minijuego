@@ -1,69 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="shortcut icon" href="./Img/favicon.jpg" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/346fc6ed98.js" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="shortcut icon" href="./Img/favicon.jpg" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/346fc6ed98.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>JUEGUITO</title>
-</head>
+  </head>
 
-<body>
-    <!-- Encabezado -->
+  <body>
     <header>
-        <h1>
-            Piedra, Papel o Tijera
-        </h1>
+      <h1>Piedra, Papel o Tijera</h1>
     </header>
 
-    <!-- Piedra, papel o tijera -->
-    <img id="imagenPpt" src="./Img/ppt.png" alt="Juego">
+    <img id="imagenPpt" src="./Img/ppt.png" alt="Juego" />
 
-    <!-- Ganador -->
-    <div id="ganador">
+    <div id="ganador"></div>
 
-    </div>
-
-    <!-- Opciones -->
     <div id="caja" class="hide contenedor">
-        <div class="opciones" id="piedra">
-            Piedra
-            <i class="fa-solid fa-hand-back-fist"></i>
-        </div>
+      <div class="opciones" id="piedra">
+        Piedra
+        <i class="fa-solid fa-hand-back-fist"></i>
+      </div>
 
-        <div class="opciones" id="papel">
-            Papel
-            <i class="fa-solid fa-hand"></i>
-        </div>
+      <div class="opciones" id="papel">
+        Papel
+        <i class="fa-solid fa-hand"></i>
+      </div>
 
-        <div class="opciones" id="tijera">
-            Tijera
-            <i class="fa-solid fa-hand-scissors"></i>
-        </div>
+      <div class="opciones" id="tijera">
+        Tijera
+        <i class="fa-solid fa-hand-scissors"></i>
+      </div>
     </div>
-    
-    <!-- Reglas -->
+
     <ol id="reglas" type="1">
-        <li>Piedra le gana a tijera, papel le gana a piedra y tijera le gana a papel</li>
-        <li>Se deberá elegir una opción por ronda, ya sea piedra, papel o tijera.</li>
-        <li>La máquina elegirá aleatoriamente otra opción para completar la ronda y se determinará quien gana.</li>
+      <li>
+        Piedra le gana a tijera, papel le gana a piedra y tijera le gana a papel
+      </li>
+      <li>
+        Se deberá elegir una opción por ronda, ya sea piedra, papel o tijera.
+      </li>
+      <li>
+        La máquina elegirá aleatoriamente otra opción para completar la ronda y
+        se determinará quien gana.
+      </li>
     </ol>
 
-    <div id="historial-ganadores">
+    <div id="juego" class="hide">
+      <h2>¡Que comience el juego!</h2>
+      <h2>--Elegí tu mano--</h2>
+      <br />
     </div>
 
     <div id="historial-rondas"></div>
+    <br />
+    <div id="historial-ganadores"></div>
 
-    <!-- Jugar -->
     <button id="btn-comenzar">¡Comenzar!</button>
+    <button id="btn-jugar" class="hide">¡Volver a Jugar!</button>
+  </body>
 
-</body>
-
-<script src="./script.js"></script>
-
+  <script src="./script.js"></script>
 </html>

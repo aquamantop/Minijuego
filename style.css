@@ -34,7 +34,7 @@ li {
     border-radius: 5vh;
 }
 
-#btn-comenzar {
+#btn-comenzar, #btn-jugar {
     margin: 1vh;
     text-align: center;
     font-size: 2rem;
@@ -43,10 +43,11 @@ li {
     color: rgb(255, 255, 255);
     background-color: rgb(0, 0, 0);
 }
-#btn-comenzar:hover{
+#btn-comenzar:hover, #btn-jugar:hover{
     color: rgb(0, 0, 0);
     background-color: rgb(255, 255, 255);
 }
+
 
 .contenedor{
     display: flex;
@@ -100,6 +101,3 @@ li {
         margin-left: 45%;
     }
 }
-
-
-
