@@ -27,6 +27,7 @@ btn.addEventListener("click", (e) => {
   e.preventDefault();
   funcionBoton(btn.innerHTML);
 });
+
 volverAJugar.addEventListener("click", (e) => {
   e.preventDefault();
   imagen.classList.add("hide");
@@ -40,6 +41,7 @@ volverAJugar.addEventListener("click", (e) => {
   eleccionJugador = "";
   ganadorRonda = "";
   historialRondas.innerHTML = "";
+  historialRondas.innerHTML = `<h2 class="sub">Historial de rondas</h2>`;
   ganador.innerHTML = "";
 });
 
@@ -52,6 +54,8 @@ function funcionBoton(data) {
     historialGanadores.classList.add("hide");
     caja.classList.remove("hide");
     juego.classList.remove("hide");
+    historialRondas.classList.remove("hide")
+    historialRondas.innerHTML = `<h2 class="sub">Historial de rondas</h2>`;
     btn.innerHTML = "Volver";
   }
   if (data === "Volver") {
@@ -59,6 +63,7 @@ function funcionBoton(data) {
     imagen.classList.remove("hide");
     reglas.classList.remove("hide");
     historialGanadores.classList.remove("hide");
+    historialRondas.classList.add("hide")
     juego.classList.add("hide");
     caja.classList.add("hide");
     volverAJugar.classList.add("hide");
@@ -67,7 +72,6 @@ function funcionBoton(data) {
     contadorRondas = 0;
     eleccionJugador = "";
     ganadorRonda = "";
-    historialRondas.innerHTML = "";
     ganador.innerHTML = "";
     btn.innerHTML = "¡Comenzar!";
   }
@@ -121,6 +125,7 @@ function finDeRonda() {
 
   volverAJugar.classList.remove("hide");
   historialGanadores.classList.remove("hide");
+  juego.classList.add("hide");
   historialGanadoresRender();
 }
 
@@ -187,7 +192,7 @@ function ronda() {
     ganador = ganaJugador;
   }
 
-  historialRondas.innerHTML += `<p>${ganador}</p>`;
+  historialRondas.innerHTML += `<h2>${ganador}</h2>`;
 }
 
 function rondasJugadas() {
@@ -209,8 +214,8 @@ function historialGanadoresRender() {
   sessionStorage.setItem("Contador general PC", contadorGeneralPC);
 
   historialGanadores.innerHTML = `
-    <h2>Historial de partidas<h2>
-    <p>Partidas que ganó la PC: ${contadorGeneralPC}</p>
-    <p>Partidas que ganó el Usuario: ${contadorGeneralJugador}</p>
+    <h2 class="sub">Historial de partidas<h2>
+    <h2>Partidas que ganó la PC: ${contadorGeneralPC}</h2>
+    <h2>Partidas que ganó el Usuario: ${contadorGeneralJugador}</h2>
   `;
 }
