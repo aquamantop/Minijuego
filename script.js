@@ -46,7 +46,6 @@ volverAJugar.addEventListener("click", (e) => {
 });
 
 function funcionBoton(data) {
-  console.log(data);
   if (data === "¡Comenzar!") {
     historialGanadoresRender();
     imagen.classList.add("hide");
@@ -54,7 +53,7 @@ function funcionBoton(data) {
     historialGanadores.classList.add("hide");
     caja.classList.remove("hide");
     juego.classList.remove("hide");
-    historialRondas.classList.remove("hide")
+    historialRondas.classList.remove("hide");
     historialRondas.innerHTML = `<h2 class="sub">Historial de rondas</h2>`;
     btn.innerHTML = "Volver";
   }
@@ -63,7 +62,7 @@ function funcionBoton(data) {
     imagen.classList.remove("hide");
     reglas.classList.remove("hide");
     historialGanadores.classList.remove("hide");
-    historialRondas.classList.add("hide")
+    historialRondas.classList.add("hide");
     juego.classList.add("hide");
     caja.classList.add("hide");
     volverAJugar.classList.add("hide");
@@ -83,7 +82,7 @@ opciones.forEach((e) => {
       jugarRonda(e.innerText.trim());
     }
     if (contadorRondas === 3) {
-      finDeRonda(e.innerText.trim());
+      finDeRonda();
     }
   });
 });
@@ -117,7 +116,7 @@ function finDeRonda() {
   }
   if (contadorJugador < contadorPC) {
     contadorGeneralPC++;
-  } 
+  }
   if (contadorJugador === contadorPC) {
     contadorGeneralJugador++;
     contadorGeneralPC++;
@@ -130,12 +129,16 @@ function finDeRonda() {
 }
 
 function jugarRonda(eleccion) {
-  if (eleccion === "Piedra") {
-    eleccionJugador = "piedra";
-  } else if (eleccion === "Papel") {
-    eleccionJugador = "papel";
-  } else if (eleccion === "Tijera") {
-    eleccionJugador = "tijera";
+  switch (eleccion) {
+    case "Piedra":
+      eleccionJugador = "piedra";
+      break;
+    case "Papel":
+      eleccionJugador = "papel";
+      break;
+    case "Tijera":
+      eleccionJugador = "tijera";
+      break;
   }
   contadorRondas += 1;
   ronda();
@@ -145,13 +148,18 @@ function eleccionAleatoria() {
   let resultado = "";
   let aleatorio = parseInt(Math.random() * 3 + 1);
 
-  if (aleatorio === 1) {
-    resultado = "piedra";
-  } else if (aleatorio === 2) {
-    resultado = "papel";
-  } else if (aleatorio === 3) {
-    resultado = "tijera";
+  switch (aleatorio) {
+    case 1:
+      resultado = "piedra";
+      break;
+    case 2:
+      resultado = "papel";
+      break;
+    case 3:
+      resultado = "tijera";
+      break;
   }
+
   return resultado;
 }
 
@@ -159,52 +167,67 @@ function ronda() {
   let maquina = eleccionAleatoria();
   let jugador = eleccionJugador;
   let ganador = "";
-  let ganaPC = `Resultado de la ${rondasJugadas()}: Gana la PC`;
-  let ganaJugador = `Resultado de la ${rondasJugadas()}: Gana el Usuario`;
+  let resultadoRonda = "";
+  let h2 = "";
 
-  if (maquina === "piedra" && jugador === "tijera") {
-    contadorPC++;
-    ganador = ganaPC;
-  }
-  if (maquina === "papel" && jugador === "piedra") {
-    contadorPC++;
-    ganador = ganaPC;
-  }
-  if (maquina === "tijera" && jugador === "papel") {
-    contadorPC++;
-    ganador = ganaPC;
-  }
+  switch (`${maquina}-${jugador}`) {
+    case "piedra-tijera":
+    case "papel-piedra":
+    case "tijera-papel":
+      contadorPC++;
+      ganador = "La PC";
+      resultadoRonda = "¡Perdiste!";
+      break;
 
-  if (maquina === jugador) {
-    ganador = `Resultado de la ${rondasJugadas()}: Empate de ronda`;
-  }
+    case "tijera-piedra":
+    case "piedra-papel":
+    case "papel-tijera":
+      contadorJugador++;
+      ganador = "El Usuario";
+      resultadoRonda = "¡Ganaste!";
+      break;
 
-  if (jugador === "piedra" && maquina === "tijera") {
-    contadorJugador++;
-    ganador = ganaJugador;
-  }
-  if (jugador === "papel" && maquina === "piedra") {
-    contadorJugador++;
-    ganador = ganaJugador;
-  }
-  if (jugador === "tijera" && maquina === "papel") {
-    contadorJugador++;
-    ganador = ganaJugador;
+    case "piedra-piedra":
+    case "papel-papel":
+    case "tijera-tijera":
+      ganador = "Empate de ronda";
+      resultadoRonda = "¡Empate!";
+      h2 = `<h2>Resultado de la ${rondasJugadas()}: La ronda terminó en empate</h2>`;
+      break;
   }
 
-  historialRondas.innerHTML += `<h2>${ganador}</h2>`;
+  resultadoRonda === "¡Empate!"
+    ? (h2 = `<h2>Resultado de la ${rondasJugadas()}: La ronda terminó en empate</h2>`)
+    : (h2 = `<h2>Resultado de la ${rondasJugadas()}: ${ganador} ganó la ronda</h2>`);
+
+  Swal.fire({
+    title: resultadoRonda,
+    text: resultadoRonda === "¡Empate!" ? ganador : ganador + " ganó la ronda",
+    icon:
+      ganador === "El Usuario"
+        ? "success"
+        : ganador === "Empate de ronda"
+        ? "info"
+        : "error",
+  });
+
+  twoWins();
+
+  historialRondas.innerHTML += h2;
 }
 
 function rondasJugadas() {
   let rondasJugadas = "";
-  if (contadorRondas === 1) {
-    rondasJugadas = "primera ronda";
-  }
-  if (contadorRondas === 2) {
-    rondasJugadas = "segunda ronda";
-  }
-  if (contadorRondas === 3) {
-    rondasJugadas = "tercera ronda";
+  switch (contadorRondas) {
+    case 1:
+      rondasJugadas = "primera ronda";
+      break;
+    case 2:
+      rondasJugadas = "segunda ronda";
+      break;
+    case 3:
+      rondasJugadas = "tercera ronda";
+      break;
   }
   return rondasJugadas;
 }
@@ -218,4 +241,10 @@ function historialGanadoresRender() {
     <h2>Partidas que ganó la PC: ${contadorGeneralPC}</h2>
     <h2>Partidas que ganó el Usuario: ${contadorGeneralJugador}</h2>
   `;
+}
+
+function twoWins() {
+  if (contadorJugador === 2 || contadorPC === 2) {
+    finDeRonda();
+  }
 }
